@@ -1,0 +1,6 @@
+transformers
+accelerate
+safetensors
+torch
+sentencepiece
+huggingface_hub[hf_xet]
