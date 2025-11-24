@@ -39,9 +39,7 @@ def run_ocr_on_file(file_path: str) -> str:
 
 #fordító modell bekötése:
 def translate_text(text: str) -> str:
-    """
-    Wrapper a GUI számára – ha hiba van, dobjuk tovább, ne hazudjunk sikert.
-    """
+
     if not text.strip():
         return ""
 
