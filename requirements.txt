@@ -4,3 +4,9 @@ safetensors
 torch
 sentencepiece
 huggingface_hub[hf_xet]
+pyside6
+easyocr
+torchvision
+pillow
+numpy
+opencv-python

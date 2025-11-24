@@ -9,6 +9,7 @@ from PySide6.QtCore import Qt, Signal
 from PIL import Image
 import easyocr
 import numpy as np
+from allergen_felismero import forditas_angolra, forditas_magyarra
 
 # ==== EASYOCR OLVASÓ BETÖLTÉSE ====
 # több nyelv akkor: ['en', 'hu']
@@ -36,11 +37,16 @@ def run_ocr_on_file(file_path: str) -> str:
 #fordító modell bekötése:
 def translate_text(text: str) -> str:
     """
-    Fordítás + nyelvfelismerés.
-    TODO: Ide jön a fordító script.
+    Wrapper a GUI számára – ha hiba van, dobjuk tovább, ne hazudjunk sikert.
     """
-    # Demo: csak visszaadja a bejövő szöveget.
-    return f"[DEMO FORDÍTÁS]\n{text}"
+    if not text.strip():
+        return ""
+
+    # Ha itt hiba van, hadd kapja el a GUI (handle_translate)
+    angol_szoveg = forditas_angolra(text)
+    return angol_szoveg
+
+
 
 #allergén modell bekötése:
 def extract_allergens(text: str) -> list[str]:
@@ -317,11 +323,22 @@ class MainWindow(QMainWindow):
             self.append_status("Fordítás sikertelen: nincs OCR szöveg.", "error")
             return
 
+        self.append_status("Fordítás folyamatban, modellek betöltése...", "info")
+
         try:
             self.translated_text = translate_text(self.ocr_text)
+            if not self.translated_text:
+                self.append_status("Fordítás nem adott eredményt.", "error")
+                return
+
             self.append_status("Fordítás sikeresen lefutott.", "success")
+            self.append_status(
+                f"Fordítás (angol) első 200 karakter: {self.translated_text[:200]}",
+                "info"
+            )
         except Exception as e:
             self.append_status(f"Fordítás hiba: {e}", "error")
+            self.translated_text = None
 
     def handle_allergens(self):
         if not self.translated_text and not self.ocr_text:
