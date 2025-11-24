@@ -357,9 +357,9 @@ class MainWindow(QMainWindow):
             if allergens:
                 self.result_text.append("Talált allergének:\n")
                 for a in allergens:
-                    self.result_text.append(f"Allergén: {a['name']}")
-                    self.result_text.append(f"Kategória: {a['category']}")
-                    self.result_text.append(f"Leírás: {a['description']}")
+                    self.result_text.append(f"Allergén: {forditas_magyarra(a['name'])}")
+                    self.result_text.append(f"Kategória: {forditas_magyarra(a['category'])}")
+                    self.result_text.append(f"Leírás: {forditas_magyarra(a['description'])}")
                     self.result_text.append("")  # üres sor
                 self.append_status("Allergének sikeresen listázva.", "success")
             else:
