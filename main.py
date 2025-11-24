@@ -3,13 +3,16 @@ import os
 
 from PySide6.QtWidgets import (
     QApplication, QMainWindow, QWidget, QVBoxLayout, QLabel,
-    QHBoxLayout, QPushButton, QTextEdit, QFrame,QFileDialog
+    QHBoxLayout, QPushButton, QTextEdit, QFrame, QFileDialog,
+    QSizePolicy
 )
 from PySide6.QtCore import Qt, Signal
 from PIL import Image
 import easyocr
 import numpy as np
 from allergen_felismero import forditas_angolra, forditas_magyarra
+from TextAllergenDetector import TextAllergenDetector
+
 
 # ==== EASYOCR OLVASÓ BETÖLTÉSE ====
 # több nyelv akkor: ['en', 'hu']
@@ -47,17 +50,19 @@ def translate_text(text: str) -> str:
     return angol_szoveg
 
 
+detector = TextAllergenDetector()
 
 #allergén modell bekötése:
-def extract_allergens(text: str) -> list[str]:
+def extract_allergens(text: str):
     """
-    Allergének kinyerése a szövegből.
-    TODO: Ide jön az allergén kereső AI / logika.
+    Allergének kinyerése Krisz keyword-detektorával (angol szöveg).
+    Visszatér: lista dict-ekkel.
     """
-    # Demo: fix lista – majd ki lehet cserélni OKOS verzióra.
-    demo_allergens = ["glutén", "tej", "tojás"]
-    # Ez most csak példa, mintha ezeket találta volna.
-    return demo_allergens
+    if not text.strip():
+        return []
+
+    return detector.detect(text)
+
 
 # ====== Teljes UI======
 # ====== DRAG & DROP ZÓNA ======
@@ -156,8 +161,8 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         # Ablak alap
-        self.setWindowTitle("OCR + Fordító + Allergének – Demo")
-        self.resize(900, 600)
+        self.setWindowTitle("Allergének Felismerő")
+        self.resize(1000, 750)
 
         # Belső állapotok
         self.current_file_path: str | None = None
@@ -345,18 +350,19 @@ class MainWindow(QMainWindow):
             self.append_status("Allergének keresése sikertelen: nincs szöveg.", "error")
             return
 
-        # Ha van fordított szöveg, azt vizsgáljuk, különben az OCR-t.
         source_text = self.translated_text or self.ocr_text or ""
 
         try:
             allergens = extract_allergens(source_text)
 
-            # Allergének megjelenítése az alsó mezőben
             self.result_text.clear()
             if allergens:
-                self.result_text.append("Talált allergének:")
+                self.result_text.append("Talált allergének:\n")
                 for a in allergens:
-                    self.result_text.append(f" - {a}")
+                    self.result_text.append(f"Allergén: {a['name']}")
+                    self.result_text.append(f"Kategória: {a['category']}")
+                    self.result_text.append(f"Leírás: {a['description']}")
+                    self.result_text.append("")  # üres sor
                 self.append_status("Allergének sikeresen listázva.", "success")
             else:
                 self.result_text.append("Nem találtunk allergéneket.")
