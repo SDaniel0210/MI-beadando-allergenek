@@ -1,15 +1,19 @@
-# Allergén felismerõ alkalmazás
-## Telepítés
-> még folyamatban a készítés
-## Alkalmazás használata
-### Kép feltöltése
-A kívánt képfájl feltöltésére két gyors és kényelmes módszer áll rendelkezésre.
-#### Húzással
-Nyissa meg a fáljkezelõt azon a helyen, ahol a kép található, majd kattintson a képre és tartsa lenyomva az egérgombot, miközben az alkalmazásban található kék felületre húzza a fáljt. A kék felületre érve elengedheti az egérgombot.
-#### Fáljválasztós feltöltés
-Kattintson a kék felületre, majd keresse meg és válassza ki a feltölteni kívánt képet. Kétszer kattintson a fáljra, vagy kattintson a "Megnyitás" gombra.
-### Allergének megjelenítése
-Az alkalmazásban a következõ nyelvek támogatottak:
+ï»¿# AllergÃ©n felismerÅ‘ alkalmazÃ¡s
+## TelepÃ­tÃ©s Ã©s alkalmazÃ¡s indÃ­tÃ¡sa
+Nyissa meg a terminÃ¡lt Ã©s Ã­rja be a kÃ¶vetkezÅ‘t: git clone https://github.com/SDaniel0210/MI-beadando-allergenek.git
+
+TerminÃ¡lban navigÃ¡ljon a letÃ¶ltÃ¶tt mappÃ¡ba majd Ã­rja be: python .\install.py
+
+VÃ¡rja meg a letÃ¶ltÃ©s befejeztÃ©t, ezek utÃ¡n a main.py indÃ­tÃ¡sÃ¡val tudja hasznÃ¡lni az alkalmazÃ¡st.
+## AlkalmazÃ¡s hasznÃ¡lata
+### KÃ©p feltÃ¶ltÃ©se
+A kÃ­vÃ¡nt kÃ©pfÃ¡jl feltÃ¶ltÃ©sÃ©re kÃ©t gyors Ã©s kÃ©nyelmes mÃ³dszer Ã¡ll rendelkezÃ©sre.
+#### HÃºzÃ¡ssal
+Nyissa meg a fÃ¡ljkezelÅ‘t azon a helyen, ahol a kÃ©p talÃ¡lhatÃ³, majd kattintson a kÃ©pre Ã©s tartsa lenyomva az egÃ©rgombot, mikÃ¶zben az alkalmazÃ¡sban talÃ¡lhatÃ³ kÃ©k felÃ¼letre hÃºzza a fÃ¡ljt. A kÃ©k felÃ¼letre Ã©rve elengedheti az egÃ©rgombot.
+#### FÃ¡ljvÃ¡lasztÃ³s feltÃ¶ltÃ©s
+Kattintson a kÃ©k felÃ¼letre, majd keresse meg Ã©s vÃ¡lassza ki a feltÃ¶lteni kÃ­vÃ¡nt kÃ©pet. KÃ©tszer kattintson a fÃ¡ljra, vagy kattintson a "MegnyitÃ¡s" gombra.
+### AllergÃ©nek megjelenÃ­tÃ©se
+Az alkalmazÃ¡sban a kÃ¶vetkezÅ‘ nyelvek tÃ¡mogatottak:
 > Magyar
 >
 > Angol
@@ -20,20 +24,20 @@ Az alkalmazásban a következõ nyelvek támogatottak:
 >
 > Lengyel
 >
-> Német
+> NÃ©met
 >
 > Olasz
 >
 > Orosz
 >
-> Román
+> RomÃ¡n
 >
 > Spanyol
 ---
-Kattintson az "OCR futtatása" gombra. Várjon a folyamatlogban zölddel megjelenõ "OCR sikeresen lefutott." üzenetre.
+Kattintson az "OCR futtatÃ¡sa" gombra. VÃ¡rjon a folyamatlogban zÃ¶lddel megjelenÅ‘ "OCR sikeresen lefutott." Ã¼zenetre.
 
-Kattintson a "Fordítás" gombra, ha megjelent a folyamatlogban a "Fordítás sikeresen lefutott." üzenet nyomja meg az "Allergének" gombot.
+Kattintson a "FordÃ­tÃ¡s" gombra, ha megjelent a folyamatlogban a "FordÃ­tÃ¡s sikeresen lefutott." Ã¼zenet nyomja meg az "AllergÃ©nek" gombot.
 
-A folyamat befejeztével magyarul kiírja a talált allergéneket, kategóriájukat és leírásukat.
+A folyamat befejeztÃ©vel magyarul kiÃ­rja a talÃ¡lt allergÃ©neket, kategÃ³riÃ¡jukat Ã©s leÃ­rÃ¡sukat.
 
-A "Törlés" gombbal eltüntetheti a megjelenített listát és a feltöltött képet, azonban törlés nélkül is tölthet fel új képet.
+A "TÃ¶rlÃ©s" gombbal eltÃ¼ntetheti a megjelenÃ­tett listÃ¡t Ã©s a feltÃ¶ltÃ¶tt kÃ©pet, azonban tÃ¶rlÃ©s nÃ©lkÃ¼l is tÃ¶lthet fel Ãºj kÃ©pet.
