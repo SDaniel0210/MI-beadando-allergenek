@@ -1,7 +1,6 @@
 import subprocess
 import sys
 import os
-import time
 
 def run_command(command: list[str]):
     """Segédfüggvény parancsok futtatásához."""
@@ -49,8 +48,6 @@ def main():
             print("\n⚠️ Néhány csomag telepítése sikertelen lehetett.")
     except Exception as e:
         print(f"\n❌ Váratlan hiba történt: {e}\n")
-        time.sleep(60)
-        sys.exit(1)
-
+        input("OK")
 if __name__ == "__main__":
     main()
